@@ -21,22 +21,27 @@ public abstract class CustomSingularExporter<TModel, TRow>
             IXLWorksheet worksheet = workbook.Worksheets.Add(_workSheetName);
             string[] header = GetHeader(model);
             IXLTable table = worksheet.Range(1, 1, data.Count + 1, header.Length).CreateTable(_tableName);
-            table.Cell(1, 1).InsertData(header, true);
-            int counter = 1;
-            foreach (var rowData in data)
-            {
-                var standart = ToRow(model, rowData, ref counter);
-                var range = table.Cell(++counter, 1).InsertData(standart.Cells, true);
-                if (standart.Color != null)
-                {
-                    range.Style.Fill.BackgroundColor = standart.Color;
-                }
-            }
+            InsertDataInTable(table, model, data, header);
             worksheet.ApplyRules(adjust, center, wrap);
             using (MemoryStream memStream = new MemoryStream())
             {
                 workbook.SaveAs(memStream);
                 return memStream.ToArray();
+            }
+        }
+    }
+
+    public virtual void InsertDataInTable(IXLTable table, TModel model, IReadOnlyCollection<TRow> data, string[] header)
+    {
+        table.Cell(1, 1).InsertData(header, true);
+        int counter = 1;
+        foreach (var rowData in data)
+        {
+            var standart = ToRow(model, rowData, ref counter);
+            var range = table.Cell(++counter, 1).InsertData(standart.Cells, true);
+            if (standart.Color != null)
+            {
+                range.Style.Fill.BackgroundColor = standart.Color;
             }
         }
     }

@@ -28,7 +28,7 @@ public abstract class StandartExporter<T> : IStandartHeaderExporter, IStandartRo
             }
         }
     }
-    public void InsertDataInTable(IXLTable table, IReadOnlyCollection<T> data, string[] header)
+    public virtual void InsertDataInTable(IXLTable table, IReadOnlyCollection<T> data, string[] header)
     {
         table.Cell(1, 1).InsertData(header, true);
         int counter = 1;
