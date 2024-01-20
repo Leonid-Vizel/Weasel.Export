@@ -6,12 +6,12 @@
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>$(AssemblyName)</Title>
-    <VersionPrefix>8.0.0</VersionPrefix>
+    <VersionPrefix>8.0.3</VersionPrefix>
     <Company>Vizel Leonid</Company>
     <Product>Weasel</Product>
     <Authors>Vizel Leonid</Authors>
     <Description>User actions audit library</Description>
-    <PackageReleaseNotes>Initial</PackageReleaseNotes>
+    <PackageReleaseNotes>ClosedXML update + readme + version sync</PackageReleaseNotes>
     <PackageIcon>weasel.png</PackageIcon>
     <RepositoryType>git</RepositoryType>
     <PackageTags>Weasel Audit</PackageTags>
@@ -22,9 +22,14 @@
     <RepositoryUrl>https://github.com/Leonid-Vizel/Weasel</RepositoryUrl>
     <PackageProjectUrl>https://github.com/Leonid-Vizel/Weasel</PackageProjectUrl>
     <Copyright>Leonid Vizel</Copyright>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
     <None Include="..\weasel.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
@@ -32,7 +37,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="ClosedXML" Version="0.102.1" />
+    <PackageReference Include="ClosedXML" Version="0.102.2" />
   </ItemGroup>
 
 </Project>
